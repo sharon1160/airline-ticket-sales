@@ -36,22 +36,23 @@
   source venv/Scripts/activate
   ````
 
-## 2. Install mypy
+## 2. Install requirements
 
-* We install _mypy_ using _pip_.
-
-  ```bash
-  pip install mypy
-  ````
-
-* To run _mypy_, we execute the following command.
+* We install requirements using requirements.txt file.
 
   ```bash
-  mypy app.py --check-untyped-defs --ignore-missing-imports
+  pip install -r requirements.txt
   ````
 
 ## 3. Run
-  
+
+* To run the application.
+
   ```bash
   python app.py
+  ````
+* To run _mypy_.
+
+  ```bash
+  mypy app.py --check-untyped-defs --ignore-missing-imports
   ````
