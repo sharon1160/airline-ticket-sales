@@ -1,1 +1,1 @@
-# airline-ticket-sales
+# Airline ticket sales app
