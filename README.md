@@ -56,6 +56,6 @@
   ```bash
   mypy app.py --check-untyped-defs --ignore-missing-imports
   ````
-## Diagrama
+## Class diagram
 
 ![](https://github.com/sharon1160/airline-ticket-sales/blob/main/diagrama.png)
