@@ -1,3 +1,4 @@
+from typing import List, Dict
 from model.Fly import Fly
 from model.Route import Route
 import random
@@ -5,39 +6,140 @@ import random
 from util import *
 
 
+def create_list_routes() -> List[Route]:
+    """
+    Función que crea y devuelve una lista de objetos Route
+    """
+    data_routes: List[Dict[str, str | float | int | tuple]] = [
+        {
+            "cod_ruta": "LIM - AYA",
+            "name_ruta": "LIMA - AYACUCHO",
+            "base_sale_price": 55.19,
+            "economic_seat_price": 8.00,
+            "premium_seat_price": 16.00,
+            "ticket_econ_num_range": (120, 130),
+            "ticket_premium_num_range": (10, 20),
+            "namePlane": "A001",
+        },
+        {
+            "cod_ruta": "LIM - CUS",
+            "name_ruta": "LIMA - CUSCO",
+            "base_sale_price": 136.51,
+            "economic_seat_price": 8.00,
+            "premium_seat_price": 16.00,
+            "ticket_econ_num_range": (130, 144),
+            "ticket_premium_num_range": (15, 24),
+            "namePlane": "A002",
+        },
+        {
+            "cod_ruta": "LIM - ARE",
+            "name_ruta": "LIMA - AREQUIPA",
+            "base_sale_price": 90.59,
+            "economic_seat_price": 8.00,
+            "premium_seat_price": 16.00,
+            "ticket_econ_num_range": (115, 138),
+            "ticket_premium_num_range": (16, 22),
+            "namePlane": "A003",
+        },
+        {
+            "cod_ruta": "LIM - TAR",
+            "name_ruta": "LIMA - TARAPOTO",
+            "base_sale_price": 71.89,
+            "economic_seat_price": 8.00,
+            "premium_seat_price": 16.00,
+            "ticket_econ_num_range": (100, 120),
+            "ticket_premium_num_range": (12, 18),
+            "namePlane": "A004",
+        },
+        {
+            "cod_ruta": "AYA - LIM",
+            "name_ruta": "AYACUCHO - LIMA",
+            "base_sale_price": 40.42,
+            "economic_seat_price": 7.00,
+            "premium_seat_price": 16.00,
+            "ticket_econ_num_range": (100, 115),
+            "ticket_premium_num_range": (10, 15),
+            "namePlane": "A001",
+        },
+        {
+            "cod_ruta": "CUS - LIM",
+            "name_ruta": "CUSCO - LIMA",
+            "base_sale_price": 124.32,
+            "economic_seat_price": 7.00,
+            "premium_seat_price": 16.00,
+            "ticket_econ_num_range": (105, 120),
+            "ticket_premium_num_range": (14, 20),
+            "namePlane": "A002",
+        },
+        {
+            "cod_ruta": "ARE - LIM",
+            "name_ruta": "AREQUIPA - LIMA",
+            "base_sale_price": 86.59,
+            "economic_seat_price": 7.00,
+            "premium_seat_price": 16.00,
+            "ticket_econ_num_range": (100, 110),
+            "ticket_premium_num_range": (13, 18),
+            "namePlane": "A003",
+        },
+        {
+            "cod_ruta": "TAR - LIM",
+            "name_ruta": "TARAPOTO - LIMA",
+            "base_sale_price": 68.42,
+            "economic_seat_price": 7.00,
+            "premium_seat_price": 16.00,
+            "ticket_econ_num_range": (90, 105),
+            "ticket_premium_num_range": (10, 15),
+            "namePlane": "A004",
+        }
+    ]
+
+    # Lista de objetos Route
+    routes: List[Route] = []
+
+    # Iteramos la lista de rutas
+    for key, route in enumerate(data_routes):
+        # Creamos el objeto ruta
+        obj_route = Route(str(route['cod_ruta']), str(route['name_ruta']), float(route['base_sale_price']), float(route['economic_seat_price']), float(
+            route['premium_seat_price']), tuple(route['ticket_econ_num_range']), tuple(route['ticket_premium_num_range']), str(route['namePlane']))
+        routes.append(obj_route)
+    return routes
+
+
+def create_list_flies(routes) -> List[Fly]:
+
+    # Lista de objetos Fly
+    flies: List[fly] = []
+
+    for route in routes:
+        obj_fly: Fly = Fly(route, random.randint(route.ticket_econ_num_range[0], route.ticket_econ_num_range[1]), random.randint(
+            route.ticket_premium_num_range[0], route.ticket_premium_num_range[1]))
+        flies.append(obj_fly)
+    return flies
+
+
 def main():
 
-    # los datos de las rutas deberian jañarse de un archivo config, buscar una forma ordenada
-    route1: Route = Route("LIM - AYA", "LIMA - AYACUCHO ",
-                          55.19, 8, 16, (120, 130), (10, 20), "A001")
-    route2: Route = Route("LIM - CUS", "LIMA - CUSCO ",
-                          136.51, 8, 16, (130, 144), (15, 24), "A002")
+    # Crear la lista de objetos Route
+    routes: List[Route] = create_list_routes()
 
-    list1: list = [route1, route2]
-    listFlies: list = []
-
-    for route in list1:
-        print(route.cod_ruta)
-        fly1: Fly = Fly(route, random.randint(route.ticket_econ_num_range[0], route.ticket_econ_num_range[1]), random.randint(
-            route.ticket_premium_num_range[0], route.ticket_premium_num_range[1]))
-        listFlies.append(fly1)
-    print("Debo tener 2 vuelos")
+    # Crear la lista de objetos Fly
+    flies: List[Route] = create_list_flies(routes)
 
     # aca el problema es: dada una lista de vuelos... hallar las preguntas
-    total_tickets = getTotalTickets(listFlies)
-    income_total_economics = getIncomeEconomicsTickets(listFlies)
-    income_total_premium = getIncomePremiumTickets(listFlies)
+    total_tickets = getTotalTickets(flies)
+    income_total_economics = getIncomeEconomicsTickets(flies)
+    income_total_premium = getIncomePremiumTickets(flies)
     total_IGV = (income_total_economics + income_total_premium)*0.18
-    number_economic_tickets = getNumberEconomicTickets(listFlies)
-    number_premium_tickets = getNumberPremiumTickets(listFlies)
+    number_economic_tickets = getNumberEconomicTickets(flies)
+    number_premium_tickets = getNumberPremiumTickets(flies)
     total = number_economic_tickets + number_premium_tickets
     average_value_economic: float = 1.18 * \
         income_total_economics/number_economic_tickets
     average_value_premium: float = 1.18*income_total_premium/number_premium_tickets
-    fly_max_value = getFlyMaxTickets(listFlies)
-    fly_min_value = getFlyMinTickets(listFlies)
-    three_fly_max: list = get3Max(listFlies)
-    fly_max_tickets = getPlaneWithMaxTickets(listFlies)
+    fly_max_value = getFlyMaxTickets(flies)
+    fly_min_value = getFlyMinTickets(flies)
+    three_fly_max: list = get3Max(flies)
+    fly_max_tickets = getPlaneWithMaxTickets(flies)
 
     print("El total de pasajes vendidos entre todos los vuelos: " +
           str(total_tickets) + "=" + str(total))
