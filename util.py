@@ -2,24 +2,24 @@ import operator
 from collections import Counter
 
 
-def getPlaneWithMaxTickets(listFlies) -> str:
+def get_plane_with_max_tickets(listFlies) -> str:
     """
     Método para obtener el avión que transportó la mayor cantidad de pasajeros
     """
     dictFliesTickets:  dict = {}
     for fly in listFlies:
-        if fly.route.namePlane in dictFliesTickets:
+        if fly.route.name_plane in dictFliesTickets:
             # update Total
-            dictFliesTickets[fly.route.namePlane] = dictFliesTickets[fly.route.namePlane] + \
+            dictFliesTickets[fly.route.name_plane] = dictFliesTickets[fly.route.name_plane] + \
                 fly.num_economic_tickets + fly.num_premium_tickets
         else:
-            dictFliesTickets[fly.route.namePlane] = fly.num_economic_tickets + \
+            dictFliesTickets[fly.route.name_plane] = fly.num_economic_tickets + \
                 fly.num_premium_tickets
     max_key = max(dictFliesTickets.items(), key=operator.itemgetter(1))[0]
     return max_key
 
 
-def getIncomeEconomicsTickets(listFlies) -> float:
+def get_income_economics_tickets(listFlies) -> float:
     """
     Método para obtener los ingresos por las ventas de pasajes económicos (sin IGV)
     """
@@ -31,7 +31,7 @@ def getIncomeEconomicsTickets(listFlies) -> float:
     return income_economics_tickets
 
 
-def getIncomePremiumTickets(listFlies) -> float:
+def get_income_premium_tickets(listFlies) -> float:
     """
     Método para obtener los ingresos por las ventas de pasajes premium (sin IGV)
     """
@@ -43,7 +43,7 @@ def getIncomePremiumTickets(listFlies) -> float:
     return income_premium_tickets
 
 
-def getNumberEconomicTickets(listFlies) -> int:
+def get_number_economic_tickets(listFlies) -> int:
     """
     Método para obtener número de tickets económicos vendidos
     """
@@ -53,7 +53,7 @@ def getNumberEconomicTickets(listFlies) -> int:
     return num_economic_tickets
 
 
-def getNumberPremiumTickets(listFlies) -> int:
+def get_number_premium_tickets(listFlies) -> int:
     """
     Método para obtener número de tickets premium vendidos
     """
@@ -63,7 +63,7 @@ def getNumberPremiumTickets(listFlies) -> int:
     return num_premium_tickets
 
 
-def getFlyMaxTickets(listFlies) -> str:
+def get_fly_max_tickets(listFlies) -> str:
     """
     Método para obtener el vuelo con la mayor cantidad de pasajeros
     """
@@ -75,7 +75,7 @@ def getFlyMaxTickets(listFlies) -> str:
     return max_key
 
 
-def getFlyMinTickets(listFlies) -> str:
+def get_fly_min_tickets(listFlies) -> str:
     """
     Método para obtener el vuelo con la menor cantidad de pasajeros
     """
@@ -106,7 +106,8 @@ def get3Max(listFlies) -> list:
 
     return list_max
 
-def get_currency_format(currency_symbol,amount) -> str:
+
+def get_currency_format(currency_symbol, amount) -> str:
     """
     Método para formatear una variable numérica en string con formato de moneda
     """
