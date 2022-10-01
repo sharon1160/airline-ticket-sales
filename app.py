@@ -8,8 +8,6 @@ from colorama import Style, Back, Fore, init
 from util import *
 
 
-
-
 def create_list_routes() -> List[Route]:
     """
     Función que crea y devuelve una lista de objetos Route
@@ -110,6 +108,9 @@ def create_list_routes() -> List[Route]:
 
 
 def create_list_flies(routes) -> List[Fly]:
+    """
+    Función que crea y devuelve una lista de objetos Fly
+    """
 
     # Lista de objetos Fly
     flies: List[Fly] = []
@@ -125,6 +126,9 @@ def create_list_flies(routes) -> List[Fly]:
 
 
 def main():
+    """
+    Función principal del módulo app.py
+    """
 
     # Crear la lista de objetos Route
     routes: List[Route] = create_list_routes()
@@ -133,20 +137,44 @@ def main():
     flies: List[Fly] = create_list_flies(routes)
 
     # Llamar a las funciones de util
+
+    # cálculo del total de ingresos por la venta de pasajes económicos
     income_total_economics: float = getIncomeEconomicsTickets(flies)
+
+    # cálculo del total de ingresos por la venta de pasajes premium
     income_total_premium: float = getIncomePremiumTickets(flies)
+
+    # cálculo del importe total de IGV
     total_IGV: float = (income_total_economics +
                         income_total_premium)*IGV_PERCENT/100
+
+    # calculo del número total de tickets económicos vendidos
     number_economic_tickets: int = getNumberEconomicTickets(flies)
+
+    # calculo del número total de tickets premium vendidos
     number_premium_tickets: int = getNumberPremiumTickets(flies)
+
+    # cálculo del total de pasajes vendidos entre todos los vuelos
     total_tickets: int = number_economic_tickets + number_premium_tickets
+
+    # cálculo del valor promedio de un pasaje económico
     average_value_economic: float = (IGV_PERCENT/100 + 1) * \
         income_total_economics / number_economic_tickets
+
+    # cálculo del valor promedio de un pasaje premium
     average_value_premium: float = (IGV_PERCENT/100 + 1) * \
         income_total_premium / number_premium_tickets
+
+    # cálculo del vuelo con la mayor cantidad de pasajeros
     fly_max_value: str = getFlyMaxTickets(flies)
+
+    # cálculo del vuelo con la menor cantidad de pasajeros
     fly_min_value: str = getFlyMinTickets(flies)
+
+    # cálculo de los tres primeros vuelos que obtuvieron los mayores ingresos por la venta de asientos
     three_fly_max: list = get3Max(flies)
+
+    # cálculo del avion que transporto más pasajeros
     fly_max_tickets: str = getPlaneWithMaxTickets(flies)
 
     # Llamar a la función init() de colorama
@@ -155,7 +183,7 @@ def main():
     print(f"{Back.RED}{Fore.WHITE}VUELOS{Back.RESET}{Fore.RESET}")
     print("======================================")
 
-    #Mostrar datos de los 8 vuelos
+    # Mostrar datos de los 8 vuelos
     for fly in flies:
         print(Back.WHITE + Fore.CYAN)
         print(f"Cod. Ruta: {fly.route.cod_ruta}")
@@ -179,8 +207,7 @@ def main():
         print(Back.RESET + Fore.RESET)
         print("======================================")
 
-
-    #Pintar la información requerida
+    # Pintar la información requerida
     print(f"{Back.RED}{Fore.WHITE}INFORMACIÓN REQUERIDA{Back.RESET}{Fore.RESET}")
     print("======================================")
 
