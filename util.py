@@ -2,15 +2,8 @@ import operator
 from collections import Counter
 
 
-def getTotalTickets(listFlies):
-    numTickets = 0
-    for fly in listFlies:
-        numTickets = numTickets + fly.num_economic_tickets + fly.num_premium_tickets
-    return numTickets
-
-
-def getPlaneWithMaxTickets(listFlies):
-    dictFliesTickets = {}
+def getPlaneWithMaxTickets(listFlies) -> str:
+    dictFliesTickets:  dict = {}
     for fly in listFlies:
         if fly.route.namePlane in dictFliesTickets:
             # update Total
@@ -23,7 +16,7 @@ def getPlaneWithMaxTickets(listFlies):
     return max_key
 
 
-def getIncomeEconomicsTickets(listFlies):
+def getIncomeEconomicsTickets(listFlies) -> float:
     income_economics_tickets = 0
     for fly in listFlies:
         economic_price = fly.route.base_sale_price + fly.route.economic_seat_price
@@ -32,7 +25,7 @@ def getIncomeEconomicsTickets(listFlies):
     return income_economics_tickets
 
 
-def getIncomePremiumTickets(listFlies):
+def getIncomePremiumTickets(listFlies) -> float:
     income_premium_tickets = 0
     for fly in listFlies:
         premium_price = fly.route.base_sale_price + fly.route.premium_seat_price
@@ -41,63 +34,56 @@ def getIncomePremiumTickets(listFlies):
     return income_premium_tickets
 
 
-def getNumberEconomicTickets(listFlies):
+def getNumberEconomicTickets(listFlies) -> int:
     num_economic_tickets = 0
     for fly in listFlies:
         num_economic_tickets = num_economic_tickets + fly.num_economic_tickets
     return num_economic_tickets
 
 
-def getNumberPremiumTickets(listFlies):
+def getNumberPremiumTickets(listFlies) -> int:
     num_premium_tickets = 0
     for fly in listFlies:
         num_premium_tickets = num_premium_tickets + fly.num_premium_tickets
     return num_premium_tickets
 
 
-def getFlyMaxTickets(listFlies):
+def getFlyMaxTickets(listFlies) -> str:
     dictFliesTickets = {}
     for fly in listFlies:
-        if fly.route.name_ruta in dictFliesTickets:
-            # update Total
-            dictFliesTickets[fly.route.name_ruta] = dictFliesTickets[fly.route.name_ruta] + \
-                fly.num_economic_tickets + fly.num_premium_tickets
-        else:
-            dictFliesTickets[fly.route.name_ruta] = fly.num_economic_tickets + \
-                fly.num_premium_tickets
+        dictFliesTickets[fly.route.name_ruta] = fly.num_economic_tickets + \
+            fly.num_premium_tickets
     max_key = max(dictFliesTickets.items(), key=operator.itemgetter(1))[0]
     return max_key
 
 
-def getFlyMinTickets(listFlies):
+def getFlyMinTickets(listFlies) -> str:
     dictFliesTickets = {}
     for fly in listFlies:
-        if fly.route.name_ruta in dictFliesTickets:
-            # update Total
-            dictFliesTickets[fly.route.name_ruta] = dictFliesTickets[fly.route.name_ruta] + \
-                fly.num_economic_tickets + fly.num_premium_tickets
-        else:
-            dictFliesTickets[fly.route.name_ruta] = fly.num_economic_tickets + \
-                fly.num_premium_tickets
-    min_key = min(dictFliesTickets.items(), key=operator.itemgetter(1))[0]
-    return min_key
+        dictFliesTickets[fly.route.name_ruta] = fly.num_economic_tickets + \
+            fly.num_premium_tickets
+    temp = min(dictFliesTickets.values())
+    min_key = [key for key in dictFliesTickets if dictFliesTickets[key] == temp]
+    return min_key[0]
 
 
-def get3Max(listFlies):
-    '''
+def get3Max(listFlies) -> list:
     dictFliesTickets = {}
     list_max = []
     for fly in listFlies:
-
-        dictFliesTickets[fly.route.name_ruta] = fly.num_economic_tickets(
-            fly.route.base_sale_price + fly.route.economic_seat_price) + fly.num_premium_tickets(fly.route.base_sale_price + fly.route.premium_seat_price)
+        dictFliesTickets[fly.route.name_ruta] = fly.num_economic_tickets*(
+            fly.route.base_sale_price + fly.route.economic_seat_price) + fly.num_premium_tickets*(fly.route.base_sale_price + fly.route.premium_seat_price)
 
     k = Counter(dictFliesTickets)
-
     high = k.most_common(3)
 
     for i in high:
         list_max.append(i[0])
 
-    return list_max'''
-    pass
+    return list_max
+
+def get_currency_format(currency_symbol,amount) -> str:
+    """
+    Método para formatear una variable numérica en string con formato de moneda
+    """
+    return "{}{:,.2f}".format(currency_symbol, amount)

@@ -3,4 +3,4 @@
 IGV_PERCENT = 18
 
 #simbolo monetario
-CURRENCY_SYMBOL = "$/. "
+CURRENCY_SYMBOL = "$ "
