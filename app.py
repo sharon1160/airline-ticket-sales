@@ -155,6 +155,7 @@ def main():
     print(f"{Back.RED}{Fore.WHITE}VUELOS{Back.RESET}{Fore.RESET}")
     print("======================================")
 
+    #Mostrar datos de los 8 vuelos
     for fly in flies:
         print(Back.WHITE + Fore.CYAN)
         print(f"Cod. Ruta: {fly.route.cod_ruta}")
@@ -178,7 +179,9 @@ def main():
         print(Back.RESET + Fore.RESET)
         print("======================================")
 
-    print(f"{Back.RED}{Fore.WHITE}RESPUESTAS{Back.RESET}{Fore.RESET}")
+
+    #Pintar la información requerida
+    print(f"{Back.RED}{Fore.WHITE}INFORMACIÓN REQUERIDA{Back.RESET}{Fore.RESET}")
     print("======================================")
 
     color_on = Fore.GREEN

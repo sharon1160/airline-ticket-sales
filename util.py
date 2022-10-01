@@ -3,6 +3,9 @@ from collections import Counter
 
 
 def getPlaneWithMaxTickets(listFlies) -> str:
+    """
+    Método para obtener el avión que transportó la mayor cantidad de pasajeros
+    """
     dictFliesTickets:  dict = {}
     for fly in listFlies:
         if fly.route.namePlane in dictFliesTickets:
@@ -17,6 +20,9 @@ def getPlaneWithMaxTickets(listFlies) -> str:
 
 
 def getIncomeEconomicsTickets(listFlies) -> float:
+    """
+    Método para obtener los ingresos por las ventas de pasajes económicos (sin IGV)
+    """
     income_economics_tickets = 0
     for fly in listFlies:
         economic_price = fly.route.base_sale_price + fly.route.economic_seat_price
@@ -26,6 +32,9 @@ def getIncomeEconomicsTickets(listFlies) -> float:
 
 
 def getIncomePremiumTickets(listFlies) -> float:
+    """
+    Método para obtener los ingresos por las ventas de pasajes premium (sin IGV)
+    """
     income_premium_tickets = 0
     for fly in listFlies:
         premium_price = fly.route.base_sale_price + fly.route.premium_seat_price
@@ -35,6 +44,9 @@ def getIncomePremiumTickets(listFlies) -> float:
 
 
 def getNumberEconomicTickets(listFlies) -> int:
+    """
+    Método para obtener número de tickets económicos vendidos
+    """
     num_economic_tickets = 0
     for fly in listFlies:
         num_economic_tickets = num_economic_tickets + fly.num_economic_tickets
@@ -42,6 +54,9 @@ def getNumberEconomicTickets(listFlies) -> int:
 
 
 def getNumberPremiumTickets(listFlies) -> int:
+    """
+    Método para obtener número de tickets premium vendidos
+    """
     num_premium_tickets = 0
     for fly in listFlies:
         num_premium_tickets = num_premium_tickets + fly.num_premium_tickets
@@ -49,6 +64,9 @@ def getNumberPremiumTickets(listFlies) -> int:
 
 
 def getFlyMaxTickets(listFlies) -> str:
+    """
+    Método para obtener el vuelo con la mayor cantidad de pasajeros
+    """
     dictFliesTickets = {}
     for fly in listFlies:
         dictFliesTickets[fly.route.name_ruta] = fly.num_economic_tickets + \
@@ -58,6 +76,9 @@ def getFlyMaxTickets(listFlies) -> str:
 
 
 def getFlyMinTickets(listFlies) -> str:
+    """
+    Método para obtener el vuelo con la menor cantidad de pasajeros
+    """
     dictFliesTickets = {}
     for fly in listFlies:
         dictFliesTickets[fly.route.name_ruta] = fly.num_economic_tickets + \
@@ -68,6 +89,9 @@ def getFlyMinTickets(listFlies) -> str:
 
 
 def get3Max(listFlies) -> list:
+    """
+    Método para obtener una lista con los 3 primeros vuelos que tuvieron mayores ingresos
+    """
     dictFliesTickets = {}
     list_max = []
     for fly in listFlies:

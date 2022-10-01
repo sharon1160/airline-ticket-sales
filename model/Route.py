@@ -3,7 +3,7 @@ from typing import Tuple
 class Route(object):
     def __init__(self, cod_ruta: str, name_ruta: str, base_sale_price: float, economic_seat_price: float, premium_seat_price: float, ticket_econ_num_range: tuple[int,int], ticket_premium_num_range: tuple[int,int], namePlane: str):
         """
-        Constructor de la clase Product
+        Constructor de la clase Route
         """
         self.cod_ruta: str = cod_ruta
         self.name_ruta: str = name_ruta
