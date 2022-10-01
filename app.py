@@ -142,7 +142,7 @@ def main():
     fly_max_tickets = getPlaneWithMaxTickets(flies)
 
     print("El total de pasajes vendidos entre todos los vuelos: " +
-          str(total_tickets) + "=" + str(total))
+          str(total_tickets))
     print("El total de ingresos por la venta de pasajes económicos: " +
           str(income_total_economics))
     print("El total de ingresos por la venta de pasajes económicos: " +
